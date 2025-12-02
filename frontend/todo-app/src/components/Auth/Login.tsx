@@ -6,14 +6,40 @@ interface LoginProps {
   onSwitchToRegister: () => void;
 }
 
+interface ValidationErrors {
+  username?: string;
+  password?: string;
+}
+
 function Login({ onSwitchToRegister }: LoginProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const { login, error, clearError } = useAuth();
+
+  const validateForm = (): boolean => {
+    const errors: ValidationErrors = {};
+
+    if (!username.trim()) {
+      errors.username = 'Username is required';
+    }
+
+    if (!password) {
+      errors.password = 'Password is required';
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     clearError();
+    setValidationErrors({});
+
+    if (!validateForm()) {
+      return;
+    }
 
     try {
       await login({ username, password });
@@ -35,11 +61,19 @@ function Login({ onSwitchToRegister }: LoginProps) {
               id="username"
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                if (validationErrors.username) {
+                  setValidationErrors(prev => ({ ...prev, username: undefined }));
+                }
+              }}
               placeholder="Enter your username"
-              required
               autoComplete="username"
+              className={validationErrors.username ? 'input-error' : ''}
             />
+            {validationErrors.username && (
+              <span className="field-error">{validationErrors.username}</span>
+            )}
           </div>
 
           <div className="form-group">
@@ -48,11 +82,19 @@ function Login({ onSwitchToRegister }: LoginProps) {
               id="password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (validationErrors.password) {
+                  setValidationErrors(prev => ({ ...prev, password: undefined }));
+                }
+              }}
               placeholder="Enter your password"
-              required
               autoComplete="current-password"
+              className={validationErrors.password ? 'input-error' : ''}
             />
+            {validationErrors.password && (
+              <span className="field-error">{validationErrors.password}</span>
+            )}
           </div>
 
           {error && <div className="error-message">{error}</div>}

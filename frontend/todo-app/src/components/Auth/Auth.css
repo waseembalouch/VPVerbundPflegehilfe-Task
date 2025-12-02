@@ -62,6 +62,23 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+.form-group input.input-error {
+  border-color: #fc8181;
+  background-color: #fff5f5;
+}
+
+.form-group input.input-error:focus {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+.field-error {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: -4px;
+  display: block;
+}
+
 .error-message {
   background: #fee;
   border: 1px solid #fcc;
