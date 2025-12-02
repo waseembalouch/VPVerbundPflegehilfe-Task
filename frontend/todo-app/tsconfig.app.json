@@ -1,0 +1,60 @@
+{
+  // ==========================================================================
+  // TypeScript Configuration for Application Code
+  // ==========================================================================
+  // This config is used for compiling the main application code
+  // Test files have separate configuration in tsconfig.node.json
+  // ==========================================================================
+
+  "compilerOptions": {
+    // Build Information
+    // ------------------------------------------------------------------------
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    // Target Environment
+    // ------------------------------------------------------------------------
+    "target": "ES2022",                       // Target modern JavaScript
+    "lib": ["ES2022", "DOM", "DOM.Iterable"], // Include DOM types
+    "module": "ESNext",                       // Use latest module syntax
+    "types": ["vite/client"],                 // Vite environment types
+
+    // Module Resolution
+    // ------------------------------------------------------------------------
+    "moduleResolution": "bundler",            // Vite bundler mode
+    "allowImportingTsExtensions": true,       // Allow .ts/.tsx imports
+    "verbatimModuleSyntax": true,             // Enforce type-only imports
+    "moduleDetection": "force",               // Treat all files as modules
+    "skipLibCheck": true,                     // Skip checking .d.ts files
+
+    // Emit
+    // ------------------------------------------------------------------------
+    "noEmit": true,                           // Vite handles transpilation
+
+    // JSX
+    // ------------------------------------------------------------------------
+    "jsx": "react-jsx",                       // Use React 17+ JSX transform
+    "useDefineForClassFields": true,          // Modern class field semantics
+
+    // Type Checking (Strict Mode)
+    // ------------------------------------------------------------------------
+    "strict": true,                           // Enable all strict checks
+    "noUnusedLocals": true,                   // Report unused local variables
+    "noUnusedParameters": true,               // Report unused parameters
+    "noFallthroughCasesInSwitch": true,       // Require breaks in switch cases
+    "noUncheckedSideEffectImports": true,     // Check side-effect imports
+    "erasableSyntaxOnly": true                // Type-only syntax enforcement
+  },
+
+  // Files to Include
+  // --------------------------------------------------------------------------
+  "include": ["src"],
+
+  // Files to Exclude
+  // --------------------------------------------------------------------------
+  // Exclude test files from production build
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test/**/*"
+  ]
+}

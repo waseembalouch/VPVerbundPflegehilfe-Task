@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: todoapp-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/todoapp.db
+      - Jwt__Secret=${JWT_SECRET:-YourSuperSecretKeyThatIsAtLeast32CharactersLongForProduction!}
+      - Jwt__Issuer=TodoApp
+      - Jwt__Audience=TodoApp
+      - Jwt__ExpirationHours=24
+    volumes:
+      - todoapp-data:/app/data
+    networks:
+      - todoapp-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend/todo-app
+      dockerfile: Dockerfile
+    container_name: todoapp-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - todoapp-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  todoapp-data:
+    driver: local
+
+networks:
+  todoapp-network:
+    driver: bridge

@@ -1,0 +1,54 @@
+@TodoApp.API_HostAddress = http://localhost:5000
+@token = your-jwt-token-here
+
+### Register User
+POST {{TodoApp.API_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "Password123"
+}
+
+### Login User
+POST {{TodoApp.API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "Password123"
+}
+
+### Get All Todos
+GET {{TodoApp.API_HostAddress}}/api/todos
+Authorization: Bearer {{token}}
+
+### Get Todo by ID
+GET {{TodoApp.API_HostAddress}}/api/todos/1
+Authorization: Bearer {{token}}
+
+### Create Todo
+POST {{TodoApp.API_HostAddress}}/api/todos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "description": "Complete the project documentation",
+  "deadline": "2025-12-10T10:00:00Z"
+}
+
+### Update Todo
+PUT {{TodoApp.API_HostAddress}}/api/todos/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "description": "Updated todo description",
+  "isCompleted": true,
+  "deadline": "2025-12-10T10:00:00Z"
+}
+
+### Delete Todo
+DELETE {{TodoApp.API_HostAddress}}/api/todos/1
+Authorization: Bearer {{token}}

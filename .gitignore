@@ -1,0 +1,126 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+*.dll
+*.exe
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+mono_crash.*
+dlldata.c
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Testing
+coverage/
+*.lcov
+.nyc_output/
+htmlcov/
+.vitest/
+
+# Vite
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+*.sln.iml
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Caches
+.npm
+.eslintcache
+.stylelintcache
+*.cache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+._*
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.temp
+*~
+nul

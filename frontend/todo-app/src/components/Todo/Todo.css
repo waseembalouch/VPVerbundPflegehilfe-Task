@@ -1,0 +1,92 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #718096;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.username {
+  color: #2d3748;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.logout-btn {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.logout-btn:hover {
+  background: #c53030;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: #a0aec0;
+  font-size: 16px;
+}
+
+.error-message {
+  background: #fed7d7;
+  border: 1px solid #fc8181;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #c53030;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.todo-item.overdue {
+  border-left: 3px solid #e53e3e;
+  background: #fff5f5;
+}
+
+.todo-item.overdue .todo-text {
+  color: #c53030;
+}
+
+.todo-item.overdue .deadline {
+  color: #e53e3e;
+  font-weight: 600;
+}
